@@ -1,0 +1,111 @@
+{
+  "info": {
+    "name": "Secure API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "An API for secure user registration, login with JWT authentication, and encrypted data storage and retrieval."
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"mina\",\n  \"password\": \"secure123\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/register",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "5000",
+          "path": ["register"]
+        },
+        "description": "📍 Endpoint: /register\n🔹 Method: POST\n📤 Request Body:\n{\n  \"username\": \"string\",\n  \"password\": \"string\"\n}\n📥 Response:\n201 Created\n{\n  \"message\": \"User created\",\n  \"user_id\": 1\n}"
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"mina\",\n  \"password\": \"secure123\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/login",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "5000",
+          "path": ["login"]
+        },
+        "description": "📍 Endpoint: /login\n🔹 Method: POST\n📤 Request Body:\n{\n  \"username\": \"string\",\n  \"password\": \"string\"\n}\n📥 Response:\n200 OK\n{\n  \"access_token\": \"JWT-TOKEN\"\n}"
+      }
+    },
+    {
+      "name": "Store Secure Data",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"data_type\": \"card\",\n  \"data\": \"1234-5678-9999-0000\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/secure-data",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "5000",
+          "path": ["secure-data"]
+        },
+        "description": "📍 Endpoint: /secure-data\n🔐 Requires JWT token\n🔹 Method: POST\n📤 Headers:\nAuthorization: Bearer <JWT-TOKEN>\n📤 Request Body:\n{\n  \"data_type\": \"string\",\n  \"data\": \"sensitive info\"\n}\n📥 Response:\n201 Created\n{\n  \"message\": \"Data stored securely\"\n}"
+      }
+    },
+    {
+      "name": "Get Stored Data",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:5000/secure-data/card",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "5000",
+          "path": ["secure-data", "card"]
+        },
+        "description": "📍 Endpoint: /secure-data/<data_type>\n🔐 Requires JWT token\n🔹 Method: GET\n📤 Headers:\nAuthorization: Bearer <JWT-TOKEN>\n📥 Response:\n200 OK\n{\n  \"card\": \"1234-5678-9999-0000\",\n  \"created_at\": \"2024-04-30T14:23:00.000Z\"\n}"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "jwt_token",
+      "value": "paste-your-token-here"
+    }
+  ]
+}

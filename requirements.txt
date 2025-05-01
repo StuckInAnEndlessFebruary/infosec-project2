@@ -1,6 +1,5 @@
-flask
-flask-sqlalchemy
-flask-jwt-extended
-python-dotenv
-cryptography
-pyjwt
+Flask==2.2.5
+Flask-JWT-Extended==4.6.0
+Flask-SQLAlchemy==3.1.1
+python-dotenv==1.0.0
+cryptography==41.0.3

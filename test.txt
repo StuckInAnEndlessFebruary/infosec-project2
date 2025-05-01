@@ -1,0 +1,27 @@
+
+```bash
+curl -X POST http://127.0.0.1:5000/register ^
+     -H "Content-Type: application/json" ^
+     -d "{\"username\": \"user1\", \"password\": \"123456\"}"
+```
+
+
+```bash
+curl -X POST http://127.0.0.1:5000/login ^
+     -H "Content-Type: application/json" ^
+     -d "{\"username\": \"user1\", \"password\": \"123456\"}"
+```
+
+```bash
+curl -X POST http://127.0.0.1:5000/secure-data ^
+     -H "Content-Type: application/json" ^
+     -H "Authorization: Bearer <ACCESS_TOKEN>" ^
+     -d "{\"data_type\": \"card\", \"data\": \"1234-5678-9999-0000\"}"
+```
+
+```bash
+curl -X GET http://127.0.0.1:5000/secure-data/card ^
+     -H "Authorization: Bearer <ACCESS_TOKEN>"
+```
+
+---

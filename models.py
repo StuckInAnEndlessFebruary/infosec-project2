@@ -20,6 +20,7 @@ class EncryptionKey(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     key_encrypted = db.Column(db.Text, nullable=False)
+    salt = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 class SensitiveData(db.Model):
@@ -29,5 +30,5 @@ class SensitiveData(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     data_type = db.Column(db.String(50), nullable=False)
     data_encrypted = db.Column(db.Text, nullable=False)
-    iv = db.Column(db.Text, nullable=False)  # Add this line
+    iv = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
